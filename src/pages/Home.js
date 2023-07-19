@@ -55,7 +55,7 @@ const Home = () => {
         <div className='popular_title'>
           <h1>Popular Movie</h1>
           <select onClick={onSelectGenre} onChange={(e) => setSelectGenre(e.target.value)} value={selectGenre}>
-            <option>카테고리 없음</option>
+            <option>genre</option>
           </select>
         </div>
         <div>{selectGenre}</div>
@@ -65,7 +65,7 @@ const Home = () => {
         <div className='topRated_title'>
           <h1>Top rated Movie</h1>
           <select onClick={onSelectGenre} onChange={(e) => setSelectGenre(e.target.value)} value={selectGenre}>
-            <option>카테고리 없음</option>
+            <option>genre</option>
           </select>
         </div>
         <MovieSlide movies={topRatedMovies}/>
@@ -74,7 +74,7 @@ const Home = () => {
         <div className='upcoming_title'>
           <h1>Upcoming Movie</h1>
           <select onClick={onSelectGenre} onChange={(e) => setSelectGenre(e.target.value)} value={selectGenre}>
-            <option>카테고리 없음</option>
+            <option>genre</option>
           </select>
         </div>
         <MovieSlide movies={upComingMovies}/>

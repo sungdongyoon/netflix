@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faCircleInfo, faStar } from '@fortawesome/free-solid-svg-icons';
 import { movieAction } from '../redux/actions/movieAction';
 import { useSelector, useDispatch } from 'react-redux';
+import MovieSlide from '../Components/MovieSlide';
 
 const MovieDetail = () => {
   const item = useLocation();
@@ -20,11 +21,16 @@ const MovieDetail = () => {
     dispatch(movieAction.getMovies());
   }, []);
 
-  const {popularMovies} = useSelector((state) => state.movie);
-  console.log("ddd",popularMovies)
+  const {popularMovies, topRatedMovies, upComingMovies} = useSelector((state) => state.movie);
+  // const allMovies = [
+  //   {...popularMovies, ...topRatedMovies, ...upComingMovies},
+  // ]
+  // const allMovieList = allMovies.map((it) => it);
+  // console.log("ALL movies", allMovieList)
+  console.log("PopularMovies",popularMovies)
   const navigate = useNavigate();
   const goPrevDetail = () => {
-    navigate(-1);
+    navigate('/');
   }
   return (
     <div className='Movie_detail' style={{backgroundImage: 'url(' + `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${itemInfo.backdrop_path}` + ')'}}>
@@ -39,7 +45,7 @@ const MovieDetail = () => {
         <div className='detail_info'>
           <span className='detail_release'>{itemInfo.release_date.slice(0, 4)}</span>
           <span className='detail_vote'>
-            <FontAwesomeIcon icon={faStar} style={{marginRight: 10, color: "yellow"}}/>
+            <FontAwesomeIcon icon={faStar} style={{marginRight: 10}}/>
             {itemInfo.vote_average} ({itemInfo.vote_count})
           </span>
           {itemInfo.adult ? <span className='detail_adult'>청소년 관람 불가</span> : ""}
@@ -56,7 +62,14 @@ const MovieDetail = () => {
           </button>
         </div>
       </div>
-      {/* <MovieSlide movies={popularMovies}/> */}
+      <div className='detail_slider'>
+        <div className='popular'>
+          <div className='popular_title'>
+            <h1>All the movies</h1>
+          </div>
+          <MovieSlide movies={popularMovies}/>
+        </div>
+      </div>
     </div>
   )
 }
